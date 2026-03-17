@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl -sL https://raw.githubusercontent.com/alexzhang13/rlm/refs/heads/main/rlm/core/rlm.py)",
+      "Bash(curl:*)",
+      "Bash(cargo clippy:*)"
+    ]
+  }
+}
