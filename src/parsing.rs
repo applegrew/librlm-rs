@@ -6,8 +6,7 @@ use crate::types::FinalAnswer;
 static CODE_BLOCK_RE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"(?s)```repl\s*\n(.*?)```").unwrap());
 
-static FINAL_RE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r#"FINAL\("([^"]*)"\)"#).unwrap());
+static FINAL_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r#"FINAL\("([^"]*)"\)"#).unwrap());
 
 static FINAL_VAR_RE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r#"FINAL_VAR\("([^"]*)"\)"#).unwrap());

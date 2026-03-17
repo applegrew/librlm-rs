@@ -210,8 +210,7 @@ impl Rlm {
             }
 
             // Append REPL output metadata to history
-            let output_metadata =
-                format_repl_output(&all_output, self.config.max_output_chars);
+            let output_metadata = format_repl_output(&all_output, self.config.max_output_chars);
             history.push(Message::user(format!(
                 "[REPL Output]:\n{}",
                 output_metadata
@@ -398,10 +397,7 @@ mod tests {
             "scripted"
         }
 
-        async fn completion(
-            &self,
-            _messages: &[Message],
-        ) -> Result<CompletionResponse, RlmError> {
+        async fn completion(&self, _messages: &[Message]) -> Result<CompletionResponse, RlmError> {
             let idx = self.call_count.fetch_add(1, Ordering::SeqCst) as usize;
             let content = if idx < self.responses.len() {
                 self.responses[idx].clone()
@@ -441,7 +437,10 @@ mod tests {
         );
 
         let result = rlm
-            .completion("This is a test context with the number 42", Some("What is the number?"))
+            .completion(
+                "This is a test context with the number 42",
+                Some("What is the number?"),
+            )
             .await
             .unwrap();
 
@@ -472,7 +471,7 @@ mod tests {
     #[tokio::test]
     async fn test_depth_zero_falls_back() {
         let backend = Arc::new(ScriptedBackend::new(vec![
-            "Direct answer without REPL".to_string(),
+            "Direct answer without REPL".to_string()
         ]));
 
         let rlm = Rlm::new(
@@ -509,10 +508,7 @@ mod tests {
             Some(backend),
         );
 
-        let result = rlm
-            .completion("test", Some("What number?"))
-            .await
-            .unwrap();
+        let result = rlm.completion("test", Some("What number?")).await.unwrap();
         assert_eq!(result.response, "42");
     }
 }

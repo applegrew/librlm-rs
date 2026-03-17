@@ -63,7 +63,11 @@ impl OpenAiBackend {
     /// - `model`: Model name (e.g., "gpt-5", "gpt-5-mini")
     /// - `api_key`: API key for authentication
     /// - `base_url`: Optional base URL. Defaults to `https://api.openai.com/v1`.
-    pub fn new(model: impl Into<String>, api_key: impl Into<String>, base_url: Option<String>) -> Self {
+    pub fn new(
+        model: impl Into<String>,
+        api_key: impl Into<String>,
+        base_url: Option<String>,
+    ) -> Self {
         Self {
             model: model.into(),
             api_key: api_key.into(),
@@ -114,10 +118,7 @@ impl LlmBackend for OpenAiBackend {
                 .text()
                 .await
                 .unwrap_or_else(|_| "unknown".to_string());
-            return Err(RlmError::LlmError(format!(
-                "HTTP {}: {}",
-                status, body
-            )));
+            return Err(RlmError::LlmError(format!("HTTP {}: {}", status, body)));
         }
 
         let chat_response: ChatResponse = response.json().await?;

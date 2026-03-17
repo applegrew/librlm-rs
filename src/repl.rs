@@ -273,12 +273,14 @@ impl LuaRepl {
 
         // re.replace(pattern, text, replacement) -> string
         let replace_fn = lua
-            .create_function(|_, (pattern, text, replacement): (String, String, String)| {
-                match regex::Regex::new(&pattern) {
+            .create_function(
+                |_, (pattern, text, replacement): (String, String, String)| match regex::Regex::new(
+                    &pattern,
+                ) {
                     Ok(re) => Ok(re.replace(&text, replacement.as_str()).to_string()),
                     Err(e) => Err(LuaError::external(e)),
-                }
-            })
+                },
+            )
             .map_err(|e| RlmError::ReplSpawnError(e.to_string()))?;
         re_table
             .set("replace", replace_fn)
@@ -286,12 +288,14 @@ impl LuaRepl {
 
         // re.replace_all(pattern, text, replacement) -> string
         let replace_all_fn = lua
-            .create_function(|_, (pattern, text, replacement): (String, String, String)| {
-                match regex::Regex::new(&pattern) {
+            .create_function(
+                |_, (pattern, text, replacement): (String, String, String)| match regex::Regex::new(
+                    &pattern,
+                ) {
                     Ok(re) => Ok(re.replace_all(&text, replacement.as_str()).to_string()),
                     Err(e) => Err(LuaError::external(e)),
-                }
-            })
+                },
+            )
             .map_err(|e| RlmError::ReplSpawnError(e.to_string()))?;
         re_table
             .set("replace_all", replace_all_fn)

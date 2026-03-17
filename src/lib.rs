@@ -42,6 +42,5 @@ pub use error::RlmError;
 pub use llm::{LlmBackend, OpenAiBackend};
 pub use rlm::{Rlm, RlmBuilder};
 pub use types::{
-    CodeBlock, CompletionResponse, FinalAnswer, Message, ReplResult, RlmCompletion, Role,
-    UsageInfo,
+    CodeBlock, CompletionResponse, FinalAnswer, Message, ReplResult, RlmCompletion, Role, UsageInfo,
 };
