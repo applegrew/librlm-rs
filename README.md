@@ -12,10 +12,10 @@ RLM enables LLMs to handle **arbitrarily long prompts** (10M+ tokens) by treatin
 │                                                     │
 │  ┌──────────┐    code     ┌──────────────────────┐  │
 │  │ Root LLM │───────────▶│  Embedded Lua REPL    │  │
-│  │ (e.g.    │◀───────────│                        │  │
-│  │  GPT-5)  │  metadata   │  context = <prompt>   │  │
+│  │ (e.g.    │◀───────────│                       │  │
+│  │  GPT-5)  │  metadata   │  context = <prompt>  │  │
 │  └──────────┘   (stdout)  │  llm_query() ─────┐  │  │
-│                           │  re.*, fs.*, json.*│  │  │
+│                           │  re.*, fs.*, json.*│ │  │
 │                           └───────────────────│──┘  │
 │                                               │     │
 │                           ┌───────────────────▼──┐  │
